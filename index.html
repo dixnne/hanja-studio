@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nombre Coreano Tradicional | Stand Universitario</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fuentes: Noto Serif KR (caligrafía) y Plus Jakarta Sans (lectura óptima en móvil) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Serif+KR:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- html2canvas para descargar la credencial en HD -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serifKR: ['"Noto Serif KR"', 'serif'],
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            hanji: '#F9F6F0',         /* Fondo papel artesanal coreano */
+            hanjiDark: '#EFE7D8',
+            ink: '#1C1917',           /* Tinta tradicional */
+            vermilion: '#B91C1C',     /* Rojo de sello Dojang */
+            vermilionDark: '#7F1D1D',
+            goldleaf: '#C59B3F',      /* Acento dorado noble */
+            celadon: '#2A5844',       /* Jade / pino coreano */
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #171513;
+      background-image: radial-gradient(#2e2824 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Textura de papel tradicional Hanji */
+    .hanji-card {
+      background-color: #FAF6EE;
+      background-image: radial-gradient(rgba(197, 155, 63, 0.09) 1px, transparent 0);
+      background-size: 16px 16px;
+    }
+
+    /* Sello rojo tradicional (Dojang / Injang) */
+    .dojang-seal {
+      border: 2px solid #B91C1C;
+      color: #B91C1C;
+      background-color: rgba(185, 28, 28, 0.08);
+      box-shadow: inset 0 0 4px rgba(185, 28, 28, 0.25);
+    }
+  </style>
+</head>
+<body class="text-stone-800 font-sans min-h-screen flex flex-col justify-between selection:bg-vermilion selection:text-white">
+
+  <!-- ENCABEZADO DEL STAND -->
+  <header class="w-full bg-[#12100E]/90 backdrop-blur border-b border-stone-800 sticky top-0 z-40 py-3 px-4 flex items-center justify-between text-stone-200">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-md dojang-seal flex items-center justify-center font-serifKR font-bold text-xs">
+        名
+      </div>
+      <div>
+        <p class="text-[10px] tracking-widest uppercase font-cinzel text-goldleaf font-semibold">Taller de Idioma & Cultura Coreana</p>
+        <h1 class="text-sm font-serifKR font-bold text-stone-100 tracking-wide">Descubre tu Nombre Coreano</h1>
+      </div>
+    </div>
+    <div>
+      <span class="text-[10px] font-semibold tracking-wide bg-stone-900 border border-goldleaf/40 text-goldleaf px-2.5 py-1 rounded-full">
+        ⛩️ Hanja Studio
+      </span>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL FLUIDO -->
+  <main class="w-full max-w-md mx-auto p-4 flex-1 flex flex-col justify-center">
+
+    <!-- ==========================================
+         FASE 1: BIENVENIDA Y CONFIGURACIÓN INICIAL
+    =========================================== -->
+    <section id="step-welcome" class="hanji-card rounded-3xl p-6 shadow-2xl space-y-5 text-center border border-stone-300 relative overflow-hidden">
+      
+      <!-- Detalle estético superior -->
+      <div class="flex items-center justify-center gap-2 text-goldleaf opacity-80">
+        <span class="h-px w-10 bg-gradient-to-r from-transparent to-goldleaf"></span>
+        <span class="text-xs font-cinzel tracking-widest">✦ 陰陽五行 • 音韻 ✦</span>
+        <span class="h-px w-10 bg-gradient-to-l from-transparent to-goldleaf"></span>
+      </div>
+
+      <div class="space-y-2">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-stone-900 border border-goldleaf/70 flex items-center justify-center shadow-md text-3xl">
+          🌸
+        </div>
+        <h2 class="text-2xl font-serifKR font-black text-ink tracking-tight">
+          Crea tu Nombre Coreano
+        </h2>
+        <p class="text-xs text-stone-600 leading-relaxed max-w-xs mx-auto font-medium">
+          Los nombres coreanos combinan un <strong>apellido</strong> y dos <strong>sílabas con armonía fonética</strong> e historia en caracteres Hanja (漢字). ¡Responde 5 preguntas fáciles y encuentra tu combinación ideal!
+        </p>
+      </div>
+
+      <!-- Formulario Inicial -->
+      <div class="space-y-4 text-left pt-1">
+        
+        <!-- Nombre del Estudiante -->
+        <div>
+          <label class="block text-xs font-bold text-stone-700 mb-1">
+            ¿Cómo te llamas o cuál es tu apodo?
+          </label>
+          <input 
+            id="input-user-name" 
+            type="text" 
+            maxlength="25" 
+            placeholder="Ej. Sofía, David, Alex, Mateo..." 
+            class="w-full px-4 py-3 rounded-xl bg-white border border-stone-300 text-stone-800 placeholder-stone-400 focus:outline-none focus:border-vermilion focus:ring-1 focus:ring-vermilion transition text-sm font-medium"
+          />
+        </div>
+
+        <!-- Selector de Género / Estilo -->
+        <div>
+          <label class="block text-xs font-bold text-stone-700 mb-1.5">
+            ¿Qué vibra buscas para tu nombre?
+          </label>
+          <div class="grid grid-cols-3 gap-2" id="gender-selector">
+            
+            <!-- Femenino -->
+            <button 
+              type="button" 
+              onclick="selectGender('fem')" 
+              id="gender-btn-fem"
+              class="gender-btn p-3 rounded-xl border border-stone-300 bg-white text-stone-700 flex flex-col items-center gap-1 transition text-center hover:border-vermilion">
+              <span class="text-xl">🌸</span>
+              <span class="text-xs font-bold">Femenino</span>
+              <span class="text-[9.5px] text-stone-400 font-medium">Dulce & Elegante</span>
+            </button>
+
+            <!-- Neutral / Unisex -->
+            <button 
+              type="button" 
+              onclick="selectGender('neutral')" 
+              id="gender-btn-neutral"
+              class="gender-btn p-3 rounded-xl border border-stone-300 bg-white text-stone-700 flex flex-col items-center gap-1 transition text-center hover:border-vermilion">
+              <span class="text-xl">🍃</span>
+              <span class="text-xs font-bold">Neutral</span>
+              <span class="text-[9.5px] text-stone-400 font-medium">Cielo & Río</span>
+            </button>
+
+            <!-- Masculino -->
+            <button 
+              type="button" 
+              onclick="selectGender('masc')" 
+              id="gender-btn-masc"
+              class="gender-btn p-3 rounded-xl border border-stone-300 bg-white text-stone-700 flex flex-col items-center gap-1 transition text-center hover:border-vermilion">
+              <span class="text-xl">🌲</span>
+              <span class="text-xs font-bold">Masculino</span>
+              <span class="text-[9.5px] text-stone-400 font-medium">Fuerza & Honor</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón Comenzar -->
+        <button 
+          onclick="startQuiz()" 
+          class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-vermilion to-vermilionDark hover:from-red-700 hover:to-red-800 text-white font-bold text-sm shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+          <span>Comenzar Test (1 Minuto)</span>
+          <span>➔</span>
+        </button>
+      </div>
+
+      <!-- Métricas de Variedad -->
+      <div class="pt-1 flex justify-center items-center gap-3 text-[11px] text-stone-500 font-medium">
+        <span>📚 +180 Combinaciones</span>
+        <span>•</span>
+        <span>✨ Sílaba x Sílaba</span>
+        <span>•</span>
+        <span>📇 ID Virtual</span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FASE 2: 5 PREGUNTAS CLARAS Y AMIGABLES
+    =========================================== -->
+    <section id="step-quiz" class="hidden space-y-4">
+      
+      <!-- Progreso superior -->
+      <div class="flex items-center justify-between px-1 text-xs">
+        <span id="quiz-step-counter" class="font-cinzel text-goldleaf font-bold tracking-wider">PREGUNTA 1 DE 5</span>
+        <span id="quiz-theme-badge" class="font-sans text-stone-300 bg-stone-900 border border-stone-800 px-2.5 py-0.5 rounded-full text-[10.5px]">
+          Tu Personalidad
+        </span>
+      </div>
+
+      <!-- Tarjeta de Pregunta en Papel Hanji -->
+      <div class="hanji-card rounded-3xl p-5 border border-stone-300 shadow-xl space-y-4">
+        <div>
+          <h3 id="quiz-question-title" class="text-base font-bold text-ink leading-snug">
+            ¿Cómo te describes cuando estás entre amigos o en la universidad?
+          </h3>
+          <p id="quiz-question-hint" class="text-xs text-stone-500 mt-1">
+            (Puedes marcar varias respuestas si sientes que te identifican)
+          </p>
+        </div>
+
+        <!-- Contenedor de Opciones Inyectadas -->
+        <div id="quiz-options-container" class="space-y-2.5">
+          <!-- Opciones dinámicas -->
+        </div>
+      </div>
+
+      <!-- Controles -->
+      <div class="flex items-center gap-2.5 pt-1">
+        <button 
+          id="btn-quiz-prev" 
+          onclick="prevQuestion()" 
+          class="py-3 px-4 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-semibold border border-stone-700 transition disabled:opacity-30 disabled:pointer-events-none">
+          Atrás
+        </button>
+        <button 
+          id="btn-quiz-next" 
+          onclick="nextQuestion()" 
+          class="flex-1 py-3 px-4 rounded-xl bg-stone-900 hover:bg-stone-800 border border-goldleaf/80 text-goldleaf font-bold text-xs tracking-wider transition active:scale-[0.99] flex items-center justify-center gap-2">
+          <span id="btn-next-text">Siguiente</span>
+          <span>➔</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FASE 3: SELECCIÓN ENTRE 3 COMBINACIONES
+    =========================================== -->
+    <section id="step-selection" class="hidden space-y-4">
+      <div class="text-center space-y-1">
+        <span class="text-[10px] uppercase tracking-widest font-cinzel text-goldleaf font-bold">¡Combinaciones Encontradas!</span>
+        <h2 class="text-xl font-serifKR font-bold text-stone-100">Elige tu nombre coreano favorito</h2>
+        <p class="text-xs text-stone-300">
+          Creamos estas 3 opciones a partir de raíces fonéticas afines a tus respuestas. Toca tu preferida:
+        </p>
+      </div>
+
+      <!-- Las 3 tarjetas de selección -->
+      <div id="candidates-container" class="space-y-3">
+        <!-- Render dinámico -->
+      </div>
+
+      <button 
+        id="btn-confirm-name" 
+        onclick="proceedToIdCard()" 
+        disabled 
+        class="w-full py-3.5 px-4 rounded-xl bg-vermilion hover:bg-vermilionDark disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm tracking-wide shadow-lg shadow-red-950/40 transition flex items-center justify-center gap-2">
+        <span>Emitir mi Credencial Oficial</span>
+        <span>📇</span>
+      </button>
+    </section>
+
+    <!-- ==========================================
+         FASE 4: CREDENCIAL TRADICIONAL (MYEONG-PAE)
+    =========================================== -->
+    <section id="step-result" class="hidden space-y-4 py-1">
+      <div class="text-center space-y-0.5">
+        <span class="text-[10px] font-cinzel text-goldleaf uppercase tracking-widest font-bold">Identidad Cultural Coreana</span>
+        <h2 class="text-lg font-serifKR font-bold text-stone-100">Tu Credencial de Estudiante (명패)</h2>
+        <p class="text-xs text-stone-300">Guárdala para tus redes o muéstrala en el stand</p>
+      </div>
+
+      <!-- CONTENEDOR CAPTURABLE -->
+      <div class="flex justify-center">
+        <div id="traditional-id-card" class="w-full max-w-[340px] hanji-card rounded-2xl p-5 text-ink shadow-2xl relative border-2 border-goldleaf overflow-hidden">
+          
+          <!-- Marcos concéntricos decorativos -->
+          <div class="absolute inset-1.5 border border-goldleaf/40 rounded-xl pointer-events-none"></div>
+          <div class="absolute inset-2.5 border border-dashed border-stone-400/40 rounded-lg pointer-events-none"></div>
+
+          <!-- Cabecera de la Placa -->
+          <div class="relative z-10 text-center border-b border-stone-300 pb-2.5">
+            <div class="flex justify-between items-center px-1 text-[9px] font-cinzel text-stone-500 font-bold tracking-wider">
+              <span>CAMPUS FESTIVAL</span>
+              <span>한국어 동아리</span>
+            </div>
+            <h3 class="text-xs font-serifKR font-black text-stone-800 tracking-wider mt-0.5">
+              CREDENCIAL DE IDENTIDAD COREANA
+            </h3>
+          </div>
+
+          <!-- Nombre principal y sello rojo Dojang -->
+          <div class="relative z-10 py-3.5 text-center space-y-1">
+            <!-- Sello Dojang en esquina -->
+            <div class="absolute right-1 top-1 w-9 h-9 dojang-seal rounded-md flex flex-col items-center justify-center text-[9px] font-serifKR font-black leading-tight rotate-3">
+              <span>認</span>
+              <span>可</span>
+            </div>
+
+            <!-- Hangul Grande -->
+            <div class="text-4xl font-serifKR font-black text-stone-900 tracking-wider pt-0.5" id="card-hangul">
+              김서아
+            </div>
+
+            <!-- Romanización Completa -->
+            <p class="text-xs font-cinzel font-bold text-vermilion tracking-widest" id="card-roman">
+              Kim Seo-ah
+            </p>
+          </div>
+
+          <!-- Desglose Sílaba por Sílaba (Novedad clave) -->
+          <div class="relative z-10 bg-white/85 rounded-xl p-3 border border-stone-300/80 space-y-2 text-left text-xs">
+            <div>
+              <span class="text-[9.5px] uppercase font-bold text-goldleaf tracking-wider block mb-1">
+                Estructura y Raíces Hanja (漢字):
+              </span>
+              <div class="grid grid-cols-3 gap-1.5 text-center" id="card-syllables-breakdown">
+                <!-- Se llena por JavaScript: Apellido + Sílaba 1 + Sílaba 2 -->
+              </div>
+            </div>
+
+            <!-- Atributos adicionales -->
+            <div class="border-t border-stone-200 pt-2 space-y-1 text-[11px]">
+              <div class="flex justify-between items-center">
+                <span class="text-stone-500">Nombre original:</span>
+                <span class="font-bold text-stone-800 font-sans" id="card-original-user">Nombre</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-stone-500">Elemento armónico:</span>
+                <span class="font-semibold text-celadon font-serifKR" id="card-element">Agua & Flores</span>
+              </div>
+            </div>
+
+            <!-- Significado Sintetizado -->
+            <div class="border-t border-stone-200 pt-1.5">
+              <span class="text-[10px] text-stone-500 uppercase tracking-wider font-bold block">Significado Poético:</span>
+              <p class="text-[11px] font-serifKR italic text-stone-800 leading-snug mt-0.5" id="card-meaning">
+                "Presencia noble que trae auspicio y gracia duradera."
+              </p>
+            </div>
+          </div>
+
+          <!-- Pie de tarjeta con número de serie -->
+          <div class="relative z-10 pt-3 flex justify-between items-center text-[9px] font-cinzel text-stone-500">
+            <span id="card-folio">ID: KOR-2026-088</span>
+            <span class="font-serifKR font-bold text-stone-400">大韓民國 音韻名</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="space-y-2 pt-1">
+        <button 
+          onclick="downloadTraditionalCard()" 
+          id="btn-download" 
+          class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-stone-900 to-black hover:from-stone-800 hover:to-stone-900 text-goldleaf font-bold text-xs border border-goldleaf tracking-wider shadow-lg transition flex items-center justify-center gap-2">
+          <span>📥 Guardar Credencial para Instagram</span>
+        </button>
+
+        <button 
+          onclick="restartExperience()" 
+          class="w-full py-2.5 px-4 rounded-xl bg-stone-900/80 hover:bg-stone-800 text-stone-400 text-xs font-medium transition">
+          🔄 Volver a intentar o crear otro nombre
+        </button>
+      </div>
+
+      <!-- Llamado a la Acción del Stand -->
+      <div class="p-3.5 rounded-2xl bg-stone-900 border border-goldleaf/40 text-center space-y-1">
+        <p class="text-xs font-serifKR font-bold text-goldleaf">¿Te gustaría tener tu nombre en caligrafía real?</p>
+        <p class="text-[11.5px] text-stone-300 leading-relaxed">
+          ¡Muestra esta pantalla a los organizadores del stand y te escribiremos tu marcalibros con pincel tradicional y sello rojo! 🏮
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NOTIFICACIÓN TOAST -->
+  <div id="toast-box" class="fixed inset-x-4 bottom-5 max-w-xs mx-auto bg-stone-950 border border-goldleaf/60 text-stone-200 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 transform translate-y-28 opacity-0 transition-all duration-300 pointer-events-none z-50">
+    <span id="toast-symbol" class="text-base">✨</span>
+    <span id="toast-text" class="text-xs font-medium">Aviso</span>
+  </div>
+
+  <footer class="text-center py-2 text-[10px] font-cinzel text-stone-500 border-t border-stone-900">
+    Hangeul Phonetic Atelier • University Cultural Festival
+  </footer>
+
+  <!-- ==========================================
+       LÓGICA JAVASCRIPT: ARQUITECTURA MODULAR DE SÍLABAS
+  =========================================== -->
+  <script>
+    /* -------------------------------------------------------------
+       1. APELLIDOS COREANOS (SEPARADOS)
+    ------------------------------------------------------------- */
+    const SURNAMES_DATABASE = [
+      { hangul: '김', roman: 'Kim', hanja: '金', meaning: 'Oro noble y solidez', vibe: 'bright' },
+      { hangul: '이', roman: 'Lee', hanja: '李', meaning: 'Ciruelo florido y elegancia', vibe: 'calm' },
+      { hangul: '박', roman: 'Park', hanja: '朴', meaning: 'Magnolia pura y sencillez', vibe: 'nature' },
+      { hangul: '최', roman: 'Choi', hanja: '崔', meaning: 'Cima montañosa y rectitud', vibe: 'leader' },
+      { hangul: '정', roman: 'Jung', hanja: '鄭', meaning: 'Armonía y dignidad', vibe: 'creative' },
+      { hangul: '강', roman: 'Kang', hanja: '姜', meaning: 'Fuerza noble de río caudaloso', vibe: 'leader' },
+      { hangul: '윤', roman: 'Yoon', hanja: '尹', meaning: 'Prudencia, lealtad y gobierno sabio', vibe: 'calm' },
+      { hangul: '한', roman: 'Han', hanja: '韓', meaning: 'Grandeza, calidez y cielo amplio', vibe: 'bright' },
+      { hangul: '송', roman: 'Song', hanja: '宋', meaning: 'Pino que se mantiene verde', vibe: 'nature' },
+      { hangul: '신', roman: 'Shin', hanja: '申', meaning: 'Agudeza mental y entusiasmo', vibe: 'creative' }
+    ];
+
+    /* -------------------------------------------------------------
+       2. DICCIONARIO DE SÍLABAS INDIVIDUALES (HANJA & SIGNIFICADO)
+    ------------------------------------------------------------- */
+    const SYLLABLES_DICT = {
+      // Sílabas con fonética y significado para nombres
+      '서': { hangul: '서', roman: 'Seo', hanja: '瑞', meaning: 'Auspicio y fortuna' },
+      '아': { hangul: '아', roman: 'Ah', hanja: '雅', meaning: 'Elegancia exquisita' },
+      '윤': { hangul: '윤', roman: 'Yun', hanja: '潤', meaning: 'Frescura que nutre' },
+      '연': { hangul: '연', roman: 'Yeon', hanja: '蓮', meaning: 'Flor de loto pura' },
+      '진': { hangul: '진', roman: 'Jin', hanja: '眞', meaning: 'Autenticidad y verdad' },
+      '린': { hangul: '린', roman: 'Rin', hanja: '潾', meaning: 'Agua de río cristalina' },
+      '하': { hangul: '하', roman: 'Ha', hanja: '夏', meaning: 'Verano radiante' },
+      '원': { hangul: '원', roman: 'Won', hanja: '元', meaning: 'Origen y grandeza' },
+      '지': { hangul: '지', roman: 'Ji', hanja: '智', meaning: 'Sabiduría clara' },
+      '은': { hangul: '은', roman: 'Eun', hanja: '恩', meaning: 'Gracia y amabilidad' },
+      '우': { hangul: '우', roman: 'Woo', hanja: '宇', meaning: 'Universo inmenso' },
+      '유': { hangul: '유', roman: 'Yu', hanja: '柔', meaning: 'Suavidad y gentileza' },
+      '민': { hangul: '민', roman: 'Min', hanja: '敏', meaning: 'Agilidad y nobleza' },
+      '예': { hangul: '예', roman: 'Ye', hanja: '藝', meaning: 'Talento y arte' },
+      '나': { hangul: '나', roman: 'Na', hanja: '娜', meaning: 'Gracia delicada' },
+      '솔': { hangul: '솔', roman: 'Sol', hanja: '松', meaning: 'Pino leal y firme' },
+      '채': { hangul: '채', roman: 'Chae', hanja: '彩', meaning: 'Colores luminosos' },
+      '율': { hangul: '율', roman: 'Yul', hanja: '律', meaning: 'Ritmo y armonía' },
+      '정': { hangul: '정', roman: 'Jung', hanja: '貞', meaning: 'Virtud inquebrantable' },
+      '주': { hangul: '주', roman: 'Joo', hanja: '珠', meaning: 'Joya o perla preciosa' },
+      '경': { hangul: '경', roman: 'Kyung', hanja: '景', meaning: 'Luz y paisaje noble' },
+      '수': { hangul: '수', roman: 'Soo', hanja: '秀', meaning: 'Sobresaliente y fino' },
+      '빈': { hangul: '빈', roman: 'Bin', hanja: '彬', meaning: 'Refinado y brillante' },
+      '다': { hangul: '다', roman: 'Da', hanja: '多', meaning: 'Abundancia fértil' },
+      '솜': { hangul: '솜', roman: 'Som', hanja: '綿', meaning: 'Cálido como algodón' },
+      '현': { hangul: '현', roman: 'Hyun', hanja: '賢', meaning: 'Virtud y sabiduría' },
+      '인': { hangul: '인', roman: 'In', hanja: '仁', meaning: 'Benevolencia profunda' },
+      '희': { hangul: '희', roman: 'Hee', hanja: '熙', meaning: 'Alegría radiante' },
+      '비': { hangul: '비', roman: 'Bi', hanja: '斐', meaning: 'Patrón elegante' },
+      '도': { hangul: '도', roman: 'Do', hanja: '道', meaning: 'El camino honorable' },
+      '태': { hangul: '태', roman: 'Tae', hanja: '泰', meaning: 'Paz magna y firme' },
+      '시': { hangul: '시', roman: 'Si', hanja: '時', meaning: 'Tiempo propicio' },
+      '준': { hangul: '준', roman: 'Jun', hanja: '俊', meaning: 'Carisma sobresaliente' },
+      '강': { hangul: '강', roman: 'Kang', hanja: '剛', meaning: 'Fuerza inmutable' },
+      '건': { hangul: '건', roman: 'Geon', hanja: '健', meaning: 'Salud y vigor' },
+      '재': { hangul: '재', roman: 'Jae', hanja: '載', meaning: 'Noble talento' },
+      '승': { hangul: '승', roman: 'Seung', hanja: '昇', meaning: 'Elevación y triunfo' },
+      '호': { hangul: '호', roman: 'Ho', hanja: '浩', meaning: 'Océano vasto' },
+      '찬': { hangul: '찬', roman: 'Chan', hanja: '燦', meaning: 'Resplandor brillante' },
+      '혁': { hangul: '혁', roman: 'Hyuk', hanja: '赫', meaning: 'Fuego resplandeciente' },
+      '훈': { hangul: '훈', roman: 'Hoon', hanja: '勳', meaning: 'Mérito honorable' },
+      '환': { hangul: '환', roman: 'Hwan', hanja: '煥', meaning: 'Luminaria brillante' },
+      '양': { hangul: '양', roman: 'Yang', hanja: '陽', meaning: 'Luz de sol del mediodía' },
+      '후': { hangul: '후', roman: 'Hoo', hanja: '厚', meaning: 'Bondad generosa' },
+      '영': { hangul: '영', roman: 'Young', hanja: '永', meaning: 'Trascendencia eterna' },
+      '석': { hangul: '석', roman: 'Seok', hanja: '錫', meaning: 'Don benevolente' },
+      '늘': { hangul: '늘', roman: 'Neul', hanja: '天', meaning: 'Cielo abierto infinito' },
+      '랑': { hangul: '랑', roman: 'Rang', hanja: '朗', meaning: 'Claridad serena' },
+      '온': { hangul: '온', roman: 'On', hanja: '溫', meaning: 'Calor apacible' },
+      '람': { hangul: '람', roman: 'Ram', hanja: '覽', meaning: 'Visión comprensiva' },
+      '가': { hangul: '가', roman: 'Ga', hanja: '佳', meaning: 'Belleza bondadosa' },
+      '안': { hangul: '안', roman: 'An', hanja: '安', meaning: 'Paz y sosiego' },
+      '보': { hangul: '보', roman: 'Bo', hanja: '甫', meaning: 'Grandeza en flor' },
+      '성': { hangul: '성', roman: 'Sung', hanja: '成', meaning: 'Realización plena' }
+    };
+
+    /* -------------------------------------------------------------
+       3. MATRIZ DE ARMONÍA FONÉTICA (COMBINACIONES RECOMENDADAS)
+       Garantiza que cada par [Sílaba 1 + Sílaba 2] sea fonéticamente
+       armonioso, natural en Corea y rico en significado.
+       MÁS DE 60 COMBINACIONES DISPONIBLES POR GÉNERO (Total > 180).
+    ------------------------------------------------------------- */
+    const HARMONY_MATRIX = {
+      // ==========================
+      // 🌸 FEMENINO (63 Combinaciones naturales)
+      // ==========================
+      fem: [
+        // Base 서 (Seo)
+        { s1: '서', s2: '아', tags: ['calm', 'spring', 'creative'], element: 'Flor de Loto & Viento Suave' },
+        { s1: '서', s2: '윤', tags: ['bright', 'summer', 'nature'], element: 'Rocío Limpio & Sauce' },
+        { s1: '서', s2: '연', tags: ['calm', 'autumn', 'creative'], element: 'Loto en Lago Apacible' },
+        { s1: '서', s2: '진', tags: ['curious', 'winter', 'leader'], element: 'Jade Puro & Luz' },
+        { s1: '서', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Agua de Río & Lluvia Fina' },
+        { s1: '서', s2: '하', tags: ['bright', 'summer', 'nature'], element: 'Brisa de Verano' },
+        { s1: '서', s2: '원', tags: ['curious', 'autumn', 'leader'], element: 'Manantial & Claridad' },
+
+        // Base 지 (Ji)
+        { s1: '지', s2: '은', tags: ['calm', 'curious', 'autumn'], element: 'Bambú Fresco & Rocío' },
+        { s1: '지', s2: '우', tags: ['curious', 'creative', 'winter'], element: 'Cielo Nocturno & Luna' },
+        { s1: '지', s2: '아', tags: ['creative', 'spring', 'calm'], element: 'Orquídea de Primavera' },
+        { s1: '지', s2: '유', tags: ['calm', 'spring', 'nature'], element: 'Seda Blanca & Brisa' },
+        { s1: '지', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Rayo Dorado & Jade' },
+        { s1: '지', s2: '원', tags: ['curious', 'autumn', 'leader'], element: 'Raíz Firme & Manantial' },
+        { s1: '지', s2: '안', tags: ['calm', 'winter', 'nature'], element: 'Nieve Apacible' },
+
+        // Base 예 (Ye)
+        { s1: '예', s2: '린', tags: ['creative', 'bright', 'spring'], element: 'Agua Cristalina & Música' },
+        { s1: '예', s2: '은', tags: ['calm', 'spring', 'nature'], element: 'Gracia Primaveral' },
+        { s1: '예', s2: '진', tags: ['curious', 'winter', 'creative'], element: 'Verdad Brillante' },
+        { s1: '예', s2: '서', tags: ['creative', 'summer', 'bright'], element: 'Aurora Luminosa' },
+        { s1: '예', s2: '나', tags: ['spring', 'creative', 'calm'], element: 'Mariposa de Jardín' },
+        { s1: '예', s2: '솔', tags: ['nature', 'winter', 'calm'], element: 'Pino con Nieve' },
+        { s1: '예', s2: '원', tags: ['curious', 'autumn', 'creative'], element: 'Poesía & Fuente' },
+
+        // Base 채 (Chae)
+        { s1: '채', s2: '원', tags: ['bright', 'creative', 'summer'], element: 'Luz de Sol & Aurora' },
+        { s1: '채', s2: '은', tags: ['calm', 'spring', 'nature'], element: 'Colores del Rocío' },
+        { s1: '채', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Río de Colores' },
+        { s1: '채', s2: '아', tags: ['spring', 'bright', 'creative'], element: 'Flores de Cerezo' },
+        { s1: '채', s2: '윤', tags: ['summer', 'bright', 'nature'], element: 'Arcoíris & Lluvia' },
+        { s1: '채', s2: '연', tags: ['calm', 'autumn', 'creative'], element: 'Loto Resplandeciente' },
+
+        // Base 하 (Ha)
+        { s1: '하', s2: '윤', tags: ['bright', 'nature', 'summer'], element: 'Lluvia Cálida de Verano' },
+        { s1: '하', s2: '은', tags: ['calm', 'spring', 'nature'], element: 'Brisa con Fragancia' },
+        { s1: '하', s2: '린', tags: ['creative', 'spring', 'bright'], element: 'Cascada de Manantial' },
+        { s1: '하', s2: '율', tags: ['creative', 'summer', 'bright'], element: 'Melodía de Estío' },
+        { s1: '하', s2: '나', tags: ['spring', 'bright', 'calm'], element: 'Flor Única Silvestre' },
+        { s1: '하', s2: '서', tags: ['calm', 'autumn', 'bright'], element: 'Atardecer Claro' },
+
+        // Base 유 (Yu)
+        { s1: '유', s2: '나', tags: ['spring', 'calm', 'creative'], element: 'Brisa Mansa & Sauces' },
+        { s1: '유', s2: '진', tags: ['curious', 'calm', 'winter'], element: 'Jade Tranquilo' },
+        { s1: '유', s2: '민', tags: ['bright', 'summer', 'calm'], element: 'Luz Dulce de Mañana' },
+        { s1: '유', s2: '정', tags: ['calm', 'autumn', 'leader'], element: 'Agua Calma de Estanque' },
+        { s1: '유', s2: '아', tags: ['creative', 'spring', 'calm'], element: 'Canto de Pájaro en Flor' },
+        { s1: '유', s2: '주', tags: ['bright', 'winter', 'creative'], element: 'Perla de Nácar' },
+
+        // Base 민 (Min)
+        { s1: '민', s2: '서', tags: ['bright', 'autumn', 'leader'], element: 'Viento Otoñal Despejado' },
+        { s1: '민', s2: '아', tags: ['spring', 'bright', 'creative'], element: 'Luz Temprana' },
+        { s1: '민', s2: '채', tags: ['creative', 'summer', 'bright'], element: 'Colorido Resplandor' },
+        { s1: '민', s2: '주', tags: ['calm', 'winter', 'nature'], element: 'Perla Esmeralda' },
+        { s1: '민', s2: '경', tags: ['curious', 'autumn', 'leader'], element: 'Horizonte Soleado' },
+        { s1: '민', s2: '지', tags: ['curious', 'calm', 'spring'], element: 'Sabiduría en Brote' },
+
+        // Base 수 (Soo)
+        { s1: '수', s2: '아', tags: ['calm', 'spring', 'creative'], element: 'Agua Fina & Flores' },
+        { s1: '수', s2: '빈', tags: ['curious', 'autumn', 'bright'], element: 'Brillo Cristalino' },
+        { s1: '수', s2: '진', tags: ['curious', 'winter', 'leader'], element: 'Manantial de Montaña' },
+        { s1: '수', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Río Fluyente' },
+        { s1: '수', s2: '연', tags: ['calm', 'summer', 'creative'], element: 'Flor en Estanque' },
+        { s1: '수', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Rocío Piel de Seda' },
+
+        // Base 다 (Da)
+        { s1: '다', s2: '은', tags: ['calm', 'nature', 'spring'], element: 'Gracia sin Límites' },
+        { s1: '다', s2: '솜', tags: ['calm', 'spring', 'nature'], element: 'Abrazo de Algodón' },
+        { s1: '다', s2: '빈', tags: ['curious', 'autumn', 'bright'], element: 'Abundancia & Claridad' },
+        { s1: '다', s2: '현', tags: ['curious', 'winter', 'leader'], element: 'Sabiduría que Crece' },
+        { s1: '다', s2: '인', tags: ['calm', 'autumn', 'nature'], element: 'Corazón Compasivo' },
+        { s1: '다', s2: '희', tags: ['bright', 'summer', 'creative'], element: 'Risa Contagiosa' },
+
+        // Base 은 (Eun)
+        { s1: '은', s2: '서', tags: ['calm', 'autumn', 'bright'], element: 'Luz Suave de Plata' },
+        { s1: '은', s2: '채', tags: ['creative', 'summer', 'bright'], element: 'Tonos Plateados' },
+        { s1: '은', s2: '비', tags: ['calm', 'spring', 'nature'], element: 'Llovizna Bienhechora' },
+        { s1: '은', s2: '진', tags: ['curious', 'winter', 'leader'], element: 'Verdad de Plata' },
+        { s1: '은', s2: '하', tags: ['bright', 'summer', 'nature'], element: 'Vía Láctea' },
+        { s1: '은', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Gota de Agua Cristalina' }
+      ],
+
+      // ==========================
+      // 🌲 MASCULINO (63 Combinaciones naturales)
+      // ==========================
+      masc: [
+        // Base 민 (Min)
+        { s1: '민', s2: '준', tags: ['leader', 'bright', 'spring'], element: 'Fuego de Hoguera & Halcón' },
+        { s1: '민', s2: '재', tags: ['curious', 'leader', 'summer'], element: 'Talento Resuelto' },
+        { s1: '민', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Océano Abierto & Sol' },
+        { s1: '민', s2: '우', tags: ['curious', 'creative', 'winter'], element: 'Espacio Cósmico' },
+        { s1: '민', s2: '규', tags: ['leader', 'autumn', 'curious'], element: 'Compás & Regla Noble' },
+        { s1: '민', s2: '찬', tags: ['bright', 'summer', 'creative'], element: 'Chispa Brillante' },
+        { s1: '민', s2: '혁', tags: ['leader', 'autumn', 'bright'], element: 'Llama Transformadora' },
+
+        // Base 도 (Do)
+        { s1: '도', s2: '현', tags: ['curious', 'calm', 'autumn'], element: 'Piedra de Río & Tinta' },
+        { s1: '도', s2: '윤', tags: ['calm', 'autumn', 'leader'], element: 'Sendero Protector' },
+        { s1: '도', s2: '진', tags: ['leader', 'winter', 'curious'], element: 'Camino de Rectitud' },
+        { s1: '도', s2: '훈', tags: ['curious', 'autumn', 'leader'], element: 'Enseñanza & Firmeza' },
+        { s1: '도', s2: '환', tags: ['bright', 'spring', 'creative'], element: 'Luz en la Cumbre' },
+        { s1: '도', s2: '준', tags: ['leader', 'summer', 'bright'], element: 'Paso Firme & Carisma' },
+        { s1: '도', s2: '율', tags: ['creative', 'spring', 'calm'], element: 'Ritmo del Viajero' },
+
+        // Base 태 (Tae)
+        { s1: '태', s2: '원', tags: ['leader', 'calm', 'winter'], element: 'Montaña Firme & Granito' },
+        { s1: '태', s2: '양', tags: ['bright', 'summer', 'leader'], element: 'Luz Directa del Sol' },
+        { s1: '태', s2: '윤', tags: ['calm', 'autumn', 'nature'], element: 'Paz de los Bosques' },
+        { s1: '태', s2: '민', tags: ['curious', 'spring', 'bright'], element: 'Fuerza Juvenil' },
+        { s1: '태', s2: '호', tags: ['leader', 'summer', 'nature'], element: 'Vasto Mar en Calma' },
+        { s1: '태', s2: '준', tags: ['leader', 'spring', 'bright'], element: 'Corona de Triunfo' },
+        { s1: '태', s2: '현', tags: ['curious', 'winter', 'calm'], element: 'Cumbre Serena' },
+
+        // Base 시 (Si)
+        { s1: '시', s2: '우', tags: ['nature', 'calm', 'summer'], element: 'Lluvia Oportuna & Nube' },
+        { s1: '시', s2: '후', tags: ['calm', 'autumn', 'nature'], element: 'Sombra Generosa' },
+        { s1: '시', s2: '윤', tags: ['calm', 'spring', 'curious'], element: 'Tiempo de Brotes' },
+        { s1: '시', s2: '원', tags: ['bright', 'summer', 'creative'], element: 'Viento en los Trigales' },
+        { s1: '시', s2: '환', tags: ['bright', 'summer', 'leader'], element: 'Amanecer en la Ciudad' },
+        { s1: '시', s2: '진', tags: ['curious', 'winter', 'leader'], element: 'Momento de Certeza' },
+
+        // Base 준 (Jun)
+        { s1: '준', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Águila & Horizonte' },
+        { s1: '준', s2: '서', tags: ['leader', 'autumn', 'calm'], element: 'Lanza Noble' },
+        { s1: '준', s2: '우', tags: ['curious', 'winter', 'creative'], element: 'Arco y Constelación' },
+        { s1: '준', s2: '영', tags: ['leader', 'winter', 'curious'], element: 'Honor Eterno' },
+        { s1: '준', s2: '혁', tags: ['leader', 'summer', 'bright'], element: 'Espíritu Vencedor' },
+        { s1: '준', s2: '희', tags: ['bright', 'spring', 'creative'], element: 'Alegría & Vigor' },
+
+        // Base 건 (Geon)
+        { s1: '건', s2: '우', tags: ['leader', 'winter', 'nature'], element: 'Roble Robusto' },
+        { s1: '건', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Rugido Noble de Tigre' },
+        { s1: '건', s2: '율', tags: ['creative', 'spring', 'calm'], element: 'Fuerza Rítmica' },
+        { s1: '건', s2: '혁', tags: ['leader', 'autumn', 'bright'], element: 'Hierro Forjado' },
+        { s1: '건', s2: '준', tags: ['leader', 'spring', 'bright'], element: 'Joven Campeón' },
+        { s1: '건', s2: '하', tags: ['nature', 'summer', 'bright'], element: 'Sol en la Llanura' },
+
+        // Base 현 (Hyun)
+        { s1: '현', s2: '우', tags: ['curious', 'winter', 'creative'], element: 'Cielo Estrellado' },
+        { s1: '현', s2: '준', tags: ['leader', 'spring', 'bright'], element: 'Sabio & Valiente' },
+        { s1: '현', s2: '진', tags: ['curious', 'winter', 'calm'], element: 'Tinta & Papel' },
+        { s1: '현', s2: '석', tags: ['leader', 'autumn', 'calm'], element: 'Piedra de Muralla' },
+        { s1: '현', s2: '수', tags: ['calm', 'spring', 'curious'], element: 'Manantial Escondido' },
+        { s1: '현', s2: '재', tags: ['curious', 'summer', 'leader'], element: 'Estratega Fino' },
+
+        // Base 재 (Jae)
+        { s1: '재', s2: '윤', tags: ['calm', 'autumn', 'curious'], element: 'Rueda de la Sabiduría' },
+        { s1: '재', s2: '준', tags: ['leader', 'spring', 'bright'], element: 'Líder Ingenioso' },
+        { s1: '재', s2: '현', tags: ['curious', 'winter', 'calm'], element: 'Estudiante Brillante' },
+        { s1: '재', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Chispa Rápida' },
+        { s1: '재', s2: '원', tags: ['leader', 'autumn', 'nature'], element: 'Fundamento Firme' },
+        { s1: '재', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Capitán de Velero' },
+
+        // Base 승 (Seung)
+        { s1: '승', s2: '우', tags: ['leader', 'winter', 'creative'], element: 'Victoria Cósmica' },
+        { s1: '승', s2: '민', tags: ['bright', 'summer', 'leader'], element: 'Paso Victorioso' },
+        { s1: '승', s2: '호', tags: ['leader', 'summer', 'bright'], element: 'Grito de Triunfo' },
+        { s1: '승', s2: '준', tags: ['leader', 'spring', 'bright'], element: 'Héroe Admirado' },
+        { s1: '승', s2: '현', tags: ['curious', 'autumn', 'leader'], element: 'Superación Serena' },
+        { s1: '승', s2: '훈', tags: ['leader', 'autumn', 'curious'], element: 'Corona de Laureles' },
+
+        // Base 진 (Jin)
+        { s1: '진', s2: '우', tags: ['curious', 'winter', 'nature'], element: 'Universo Genuino' },
+        { s1: '진', s2: '혁', tags: ['leader', 'summer', 'bright'], element: 'Fuego Auténtico' },
+        { s1: '진', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Mar Sincero' },
+        { s1: '진', s2: '준', tags: ['leader', 'spring', 'bright'], element: 'Nobleza Verdadera' },
+        { s1: '진', s2: '서', tags: ['calm', 'autumn', 'curious'], element: 'Sello de Confianza' },
+        { s1: '진', s2: '율', tags: ['creative', 'spring', 'calm'], element: 'Armonía de Verdad' }
+      ],
+
+      // ==========================
+      // 🍃 NEUTRAL / UNISEX (62 Combinaciones naturales)
+      // ==========================
+      neutral: [
+        // Base 하 (Ha)
+        { s1: '하', s2: '늘', tags: ['nature', 'calm', 'autumn'], element: 'Cielo Abierto & Viento Libre' },
+        { s1: '하', s2: '랑', tags: ['bright', 'spring', 'nature'], element: 'Olas de Mar & Sol' },
+        { s1: '하', s2: '온', tags: ['calm', 'spring', 'nature'], element: 'Tierra Tibia' },
+        { s1: '하', s2: '람', tags: ['curious', 'autumn', 'nature'], element: 'Horizonte Azul' },
+        { s1: '하', s2: '진', tags: ['curious', 'winter', 'leader'], element: 'Pureza de Niebla' },
+        { s1: '하', s2: '연', tags: ['calm', 'summer', 'creative'], element: 'Lago en Verano' },
+        { s1: '하', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Brisa Veloz' },
+
+        // Base 지 (Ji)
+        { s1: '지', s2: '민', tags: ['curious', 'calm', 'autumn'], element: 'Neblina Suave & Bambú' },
+        { s1: '지', s2: '온', tags: ['calm', 'spring', 'nature'], element: 'Abrazo de Primavera' },
+        { s1: '지', s2: '안', tags: ['calm', 'winter', 'nature'], element: 'Refugio Seguro' },
+        { s1: '지', s2: '율', tags: ['creative', 'spring', 'calm'], element: 'Acorde de Arpa' },
+        { s1: '지', s2: '우', tags: ['curious', 'winter', 'creative'], element: 'Estrella Guía' },
+        { s1: '지', s2: '현', tags: ['curious', 'autumn', 'leader'], element: 'Sabiduría de Libro' },
+        { s1: '지', s2: '수', tags: ['calm', 'spring', 'nature'], element: 'Agua Clara de Pozo' },
+
+        // Base 가 (Ga)
+        { s1: '가', s2: '람', tags: ['nature', 'calm', 'spring'], element: 'Río Fluvial & Guijarros' },
+        { s1: '가', s2: '온', tags: ['calm', 'spring', 'bright'], element: 'Centro Calmo' },
+        { s1: '가', s2: '율', tags: ['creative', 'summer', 'calm'], element: 'Canción de Viento' },
+        { s1: '가', s2: '은', tags: ['calm', 'spring', 'nature'], element: 'Rocío Dulce' },
+        { s1: '가', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Río Vivo' },
+        { s1: '가', s2: '현', tags: ['curious', 'winter', 'calm'], element: 'Piedra Serena' },
+
+        // Base 연 (Yeon)
+        { s1: '연', s2: '우', tags: ['calm', 'winter', 'creative'], element: 'Lluvia en el Tejón' },
+        { s1: '연', s2: '진', tags: ['curious', 'winter', 'calm'], element: 'Loto de Nieve' },
+        { s1: '연', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Espejo de Agua' },
+        { s1: '연', s2: '재', tags: ['creative', 'spring', 'curious'], element: 'Artesano del Bambú' },
+        { s1: '연', s2: '수', tags: ['calm', 'spring', 'nature'], element: 'Agua de Lotus' },
+        { s1: '연', s2: '안', tags: ['calm', 'autumn', 'nature'], element: 'Paz de Tarde' },
+
+        // Base 시 (Si)
+        { s1: '시', s2: '원', tags: ['bright', 'creative', 'summer'], element: 'Brisa de Montaña' },
+        { s1: '시', s2: '온', tags: ['calm', 'spring', 'nature'], element: 'Tarde Iluminada' },
+        { s1: '시', s2: '안', tags: ['calm', 'winter', 'nature'], element: 'Quietud en los Sauces' },
+        { s1: '시', s2: '율', tags: ['creative', 'spring', 'calm'], element: 'Paso Ligero' },
+        { s1: '시', s2: '호', tags: ['bright', 'summer', 'leader'], element: 'Río en Marea Alta' },
+        { s1: '시', s2: '윤', tags: ['calm', 'autumn', 'curious'], element: 'Lluvia Tranquila' },
+
+        // Base 보 (Bo)
+        { s1: '보', s2: '람', tags: ['calm', 'autumn', 'leader'], element: 'Plenitud del Árbol' },
+        { s1: '보', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Fruto Maduro' },
+        { s1: '보', s2: '현', tags: ['curious', 'winter', 'calm'], element: 'Jardín de Sabiduría' },
+        { s1: '보', s2: '경', tags: ['curious', 'autumn', 'bright'], element: 'Valle Soleado' },
+        { s1: '보', s2: '재', tags: ['creative', 'spring', 'leader'], element: 'Semilla Noble' },
+        { s1: '보', s2: '윤', tags: ['calm', 'spring', 'nature'], element: 'Flor Silvestre' },
+
+        // Base 다 (Da)
+        { s1: '다', s2: '온', tags: ['calm', 'spring', 'bright'], element: 'Llegada de la Calidez' },
+        { s1: '다', s2: '원', tags: ['creative', 'autumn', 'leader'], element: 'Gran Esperanza' },
+        { s1: '다', s2: '율', tags: ['creative', 'summer', 'bright'], element: 'Canto Libre' },
+        { s1: '다', s2: '윤', tags: ['calm', 'spring', 'nature'], element: 'Rocío Abundante' },
+        { s1: '다', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Lluvia de Primavera' },
+        { s1: '다', s2: '인', tags: ['calm', 'autumn', 'nature'], element: 'Amabilidad Universal' },
+
+        // Base 솔 (Sol)
+        { s1: '솔', s2: '이', tags: ['nature', 'spring', 'calm'], element: 'Pino Pequeño' },
+        { s1: '솔', s2: '우', tags: ['nature', 'winter', 'creative'], element: 'Pino Bajo las Estrellas' },
+        { s1: '솔', s2: '찬', tags: ['nature', 'summer', 'bright'], element: 'Pino Soleado' },
+        { s1: '솔', s2: '민', tags: ['bright', 'summer', 'nature'], element: 'Viento en los Pinos' },
+        { s1: '솔', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Resina Transparente' },
+        { s1: '솔', s2: '비', tags: ['calm', 'spring', 'nature'], element: 'Lluvia sobre las Agujas' },
+
+        // Base 윤 (Yoon)
+        { s1: '윤', s2: '성', tags: ['leader', 'autumn', 'curious'], element: 'Logro Armonioso' },
+        { s1: '윤', s2: '우', tags: ['curious', 'winter', 'creative'], element: 'Espacio de Gracia' },
+        { s1: '윤', s2: '진', tags: ['curious', 'winter', 'calm'], element: 'Honestidad de Agua' },
+        { s1: '윤', s2: '재', tags: ['creative', 'summer', 'leader'], element: 'Cofre Precioso' },
+        { s1: '윤', s2: '서', tags: ['calm', 'autumn', 'bright'], element: 'Página Blanca' },
+        { s1: '윤', s2: '민', tags: ['bright', 'summer', 'curious'], element: 'Río Fluyente' },
+
+        // Base 찬 (Chan)
+        { s1: '찬', s2: '솔', tags: ['nature', 'winter', 'leader'], element: 'Pino Fuerte & Radiante' },
+        { s1: '찬', s2: '우', tags: ['curious', 'winter', 'creative'], element: 'Firmamento Luminoso' },
+        { s1: '찬', s2: '영', tags: ['leader', 'summer', 'bright'], element: 'Llama Inextinguible' },
+        { s1: '찬', s2: '율', tags: ['creative', 'spring', 'bright'], element: 'Danza de Alegría' },
+        { s1: '찬', s2: '희', tags: ['bright', 'summer', 'creative'], element: 'Resplandor Dorado' },
+        { s1: '찬', s2: '린', tags: ['creative', 'spring', 'nature'], element: 'Agua Brillante al Sol' }
+      ]
+    };
+
+    /* -------------------------------------------------------------
+       4. LAS 5 PREGUNTAS CLARAS Y AMIGABLES
+    ------------------------------------------------------------- */
+    const QUESTIONS_DATA = [
+      {
+        title: "¿Cómo eres normalmente en tu día a día o con tus amigos?",
+        hint: "Elige las que mejor vayan contigo (puedes marcar varias):",
+        theme: "Tu forma de ser",
+        stepText: "PREGUNTA 1 DE 5",
+        options: [
+          { text: "Curioso/a, me encanta aprender cosas nuevas y analizar todo", tag: "curious", icon: "📚" },
+          { text: "Sociable y con chispa, me gusta contagiar buena vibra", tag: "bright", icon: "⚡" },
+          { text: "Tranqui y de confianza, me buscan para pedir consejos", tag: "calm", icon: "☕" },
+          { text: "Creativo/a y soñador/a, me encanta el arte o la música", tag: "creative", icon: "🎨" }
+        ]
+      },
+      {
+        title: "¿Qué plan o paisaje te recarga las pilas al 100%?",
+        hint: "Los elementos de la naturaleza guían los caracteres Hanja:",
+        theme: "Tu rincón de paz",
+        stepText: "PREGUNTA 2 DE 5",
+        options: [
+          { text: "Escuchar llover desde mi ventana con café o té caliente", tag: "calm", icon: "🌧️" },
+          { text: "Caminar por un bosque o parque lleno de árboles verdes", tag: "nature", icon: "🌲" },
+          { text: "Una tarde soleada paseando con amigos o yendo por comida rica", tag: "bright", icon: "☀️" },
+          { text: "Una noche despejada mirando las estrellas y escuchando música", tag: "curious", icon: "🌌" }
+        ]
+      },
+      {
+        title: "¿Con qué estación del año sientes más conexión?",
+        hint: "Cada estación define el balance fonético del nombre:",
+        theme: "Estaciones",
+        stepText: "PREGUNTA 3 DE 5",
+        options: [
+          { text: "Primavera (새봄) - Flores, aire fresco y nuevos comienzos", tag: "spring", icon: "🌸" },
+          { text: "Verano (여름) - Vacaciones, sol, energía y diversión", tag: "summer", icon: "🍉" },
+          { text: "Otoño (가을) - Hojas doradas, suéteres y tardes templadas", tag: "autumn", icon: "🍂" },
+          { text: "Invierno (겨울) - Días fríos, cobijitas, calma y descanso", tag: "winter", icon: "❄️" }
+        ]
+      },
+      {
+        title: "Cuando tienes que resolver un problema o examen pesado, ¿cómo reaccionas?",
+        hint: "¿Cuál suele ser tu instinto o estrategia personal?",
+        theme: "Tus retos",
+        stepText: "PREGUNTA 4 DE 5",
+        options: [
+          { text: "Respiro hondo, mantengo la calma y busco la opción más lógica", tag: "calm", icon: "🧘" },
+          { text: "Me pongo en modo líder y busco soluciones prácticas de una vez", tag: "leader", icon: "🎯" },
+          { text: "Investigo a fondo y comparo opciones antes de actuar", tag: "curious", icon: "🔍" },
+          { text: "Uso mi intuición e ingenio para salir del paso de forma original", tag: "creative", icon: "💡" }
+        ]
+      },
+      {
+        title: "¿Qué vibra te gustaría que transmita tu nombre coreano?",
+        hint: "El mensaje y huella que llevará tu credencial:",
+        theme: "Tu vibra soñada",
+        stepText: "PREGUNTA 5 DE 5",
+        options: [
+          { text: "Calidez y ternura, que dé paz a quienes me rodean", tag: "calm", icon: "🕊️" },
+          { text: "Fuerza, liderazgo e inspiración para cumplir metas", tag: "leader", icon: "🦁" },
+          { text: "Libertad, frescura y vivir sin tantas complicaciones", tag: "nature", icon: "🍃" },
+          { text: "Alegría brillante, optimismo y muchas sonrisas", tag: "bright", icon: "✨" }
+        ]
+      }
+    ];
+
+    /* -------------------------------------------------------------
+       ESTADO DE LA APLICACIÓN
+    ------------------------------------------------------------- */
+    let userName = "";
+    let selectedGender = "neutral";
+    let currentQuestionIdx = 0;
+    let userAnswers = [[], [], [], [], []];
+    let generatedOptions = [];
+    let selectedCandidateIdx = null;
+
+    /* -------------------------------------------------------------
+       INTERFAZ Y NAVEGACIÓN
+    ------------------------------------------------------------- */
+    function showToast(text, symbol = "✨") {
+      const toast = document.getElementById("toast-box");
+      document.getElementById("toast-text").innerText = text;
+      document.getElementById("toast-symbol").innerText = symbol;
+      toast.classList.remove("translate-y-28", "opacity-0");
+      toast.classList.add("translate-y-0", "opacity-100");
+      setTimeout(() => {
+        toast.classList.add("translate-y-28", "opacity-0");
+        toast.classList.remove("translate-y-0", "opacity-100");
+      }, 2400);
+    }
+
+    function selectGender(gender) {
+      selectedGender = gender;
+      const buttons = document.querySelectorAll(".gender-btn");
+      buttons.forEach(btn => {
+        btn.classList.remove("border-vermilion", "bg-red-50/60", "ring-2", "ring-vermilion/30");
+        btn.classList.add("bg-white", "border-stone-300");
+      });
+
+      const activeBtn = document.getElementById(`gender-btn-${gender}`);
+      if (activeBtn) {
+        activeBtn.classList.remove("bg-white", "border-stone-300");
+        activeBtn.classList.add("border-vermilion", "bg-red-50/60", "ring-2", "ring-vermilion/30");
+      }
+    }
+
+    // Inicializar con opción neutral seleccionada
+    selectGender('neutral');
+
+    function startQuiz() {
+      const input = document.getElementById("input-user-name");
+      const val = input.value.trim();
+      if (!val) {
+        showToast("Escribe tu nombre para personalizar tu credencial", "✍️");
+        input.focus();
+        return;
+      }
+      userName = val;
+
+      document.getElementById("step-welcome").classList.add("hidden");
+      document.getElementById("step-quiz").classList.remove("hidden");
+      currentQuestionIdx = 0;
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const q = QUESTIONS_DATA[currentQuestionIdx];
+      document.getElementById("quiz-step-counter").innerText = q.stepText;
+      document.getElementById("quiz-theme-badge").innerText = q.theme;
+      document.getElementById("quiz-question-title").innerText = q.title;
+      document.getElementById("quiz-question-hint").innerText = q.hint;
+
+      const container = document.getElementById("quiz-options-container");
+      container.innerHTML = "";
+
+      const currentSelections = userAnswers[currentQuestionIdx] || [];
+
+      q.options.forEach((opt) => {
+        const isChecked = currentSelections.includes(opt.tag);
+        const card = document.createElement("div");
+        card.className = `p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between text-left select-none ${
+          isChecked 
+            ? 'bg-red-50/80 border-vermilion text-stone-900 shadow-sm' 
+            : 'bg-white/90 border-stone-300 hover:border-stone-400 text-stone-700'
+        }`;
+        card.onclick = () => toggleOption(opt.tag);
+
+        card.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-xl shrink-0">${opt.icon}</span>
+            <span class="text-xs sm:text-sm font-medium leading-snug">${opt.text}</span>
+          </div>
+          <div class="w-5 h-5 rounded-md border flex items-center justify-center shrink-0 ml-2 ${
+            isChecked ? 'bg-vermilion border-vermilion text-white font-bold text-xs' : 'border-stone-400 bg-stone-100'
+          }">
+            ${isChecked ? '✓' : ''}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Estado del botón anterior
+      const prevBtn = document.getElementById("btn-quiz-prev");
+      if (currentQuestionIdx === 0) {
+        prevBtn.setAttribute("disabled", "true");
+      } else {
+        prevBtn.removeAttribute("disabled");
+      }
+
+      // Etiqueta del botón siguiente
+      const nextBtnText = document.getElementById("btn-next-text");
+      if (currentQuestionIdx === QUESTIONS_DATA.length - 1) {
+        nextBtnText.innerText = "Ver mis 3 combinaciones";
+      } else {
+        nextBtnText.innerText = "Siguiente";
+      }
+    }
+
+    function toggleOption(tag) {
+      let selected = userAnswers[currentQuestionIdx] || [];
+      if (selected.includes(tag)) {
+        selected = selected.filter(t => t !== tag);
+      } else {
+        selected.push(tag);
+      }
+      userAnswers[currentQuestionIdx] = selected;
+      renderCurrentQuestion();
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIdx > 0) {
+        currentQuestionIdx--;
+        renderCurrentQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      if (!userAnswers[currentQuestionIdx] || userAnswers[currentQuestionIdx].length === 0) {
+        showToast("Marca al menos una respuesta para continuar", "👆");
+        return;
+      }
+
+      if (currentQuestionIdx < QUESTIONS_DATA.length - 1) {
+        currentQuestionIdx++;
+        renderCurrentQuestion();
+      } else {
+        generateHarmonicNames();
+      }
+    }
+
+    /* -------------------------------------------------------------
+       MOTOR DE GENERACIÓN CON COMBINATORIA SÍLABA X SÍLABA
+    ------------------------------------------------------------- */
+    function generateHarmonicNames() {
+      const allTags = userAnswers.flat();
+      const tagFrequency = {};
+      allTags.forEach(t => tagFrequency[t] = (tagFrequency[t] || 0) + 1);
+
+      // 1. Obtener la lista de pares fonéticos armoniosos según el género elegido (más de 60 opciones)
+      const pool = [...HARMONY_MATRIX[selectedGender]];
+
+      // 2. Puntuar cada par según afinidad con las respuestas del usuario
+      pool.forEach(item => {
+        item.score = item.tags.reduce((acc, tag) => acc + (tagFrequency[tag] || 0), 0);
+        // Leve componente aleatorio para dar variedad si el mismo usuario lo hace de nuevo
+        item.score += Math.random() * 0.8;
+      });
+
+      // 3. Ordenar y seleccionar los 3 mejores pares de sílabas
+      pool.sort((a, b) => b.score - a.score);
+      const topPairs = pool.slice(0, 3);
+
+      // 4. Seleccionar 3 apellidos tradicionales distintos
+      const shuffledSurnames = [...SURNAMES_DATABASE].sort(() => 0.5 - Math.random());
+
+      // 5. Construir las 3 identidades completas
+      generatedOptions = topPairs.map((pair, index) => {
+        const surnameObj = shuffledSurnames[index];
+        const syl1Obj = SYLLABLES_DICT[pair.s1] || { hangul: pair.s1, roman: pair.s1, hanja: '—', meaning: 'Virtud noble' };
+        const syl2Obj = SYLLABLES_DICT[pair.s2] || { hangul: pair.s2, roman: pair.s2, hanja: '—', meaning: 'Armonía' };
+
+        const fullHangul = surnameObj.hangul + syl1Obj.hangul + syl2Obj.hangul;
+        const fullRoman = `${surnameObj.roman} ${syl1Obj.roman}-${syl2Obj.roman.toLowerCase()}`;
+
+        // Síntesis del significado
+        const synthesizedMeaning = `Combina ${syl1Obj.meaning.toLowerCase()} (${syl1Obj.hanja}) con ${syl2Obj.meaning.toLowerCase()} (${syl2Obj.hanja}). Representa una personalidad que inspira confianza y equilibrio.`;
+
+        return {
+          hangul: fullHangul,
+          roman: fullRoman,
+          surname: surnameObj,
+          syl1: syl1Obj,
+          syl2: syl2Obj,
+          element: pair.element,
+          meaning: synthesizedMeaning
+        };
+      });
+
+      renderSelectionScreen();
+    }
+
+    function renderSelectionScreen() {
+      document.getElementById("step-quiz").classList.add("hidden");
+      document.getElementById("step-selection").classList.remove("hidden");
+
+      const container = document.getElementById("candidates-container");
+      container.innerHTML = "";
+      selectedCandidateIdx = null;
+      document.getElementById("btn-confirm-name").setAttribute("disabled", "true");
+
+      generatedOptions.forEach((opt, idx) => {
+        const card = document.createElement("div");
+        card.id = `cand-box-${idx}`;
+        card.className = "cand-card p-4 rounded-2xl hanji-card border-2 border-stone-300 hover:border-goldleaf cursor-pointer transition flex flex-col gap-2 relative shadow-sm";
+        card.onclick = () => chooseOption(idx);
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-md dojang-seal flex items-center justify-center font-serifKR font-black text-xs">
+                ${idx + 1}
+              </span>
+              <div>
+                <h4 class="text-2xl font-serifKR font-black text-ink tracking-wider">${opt.hangul}</h4>
+                <p class="text-xs font-cinzel font-bold text-vermilion">${opt.roman}</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-sans font-semibold bg-stone-200/80 text-stone-700 px-2.5 py-0.5 rounded-full border border-stone-300">
+              ${opt.element.split('&')[0].trim()}
+            </span>
+          </div>
+
+          <!-- Desglose de 3 Bloques: Apellido + S1 + S2 -->
+          <div class="grid grid-cols-3 gap-1 bg-white/70 rounded-xl p-2 text-center text-[10px] border border-stone-200">
+            <div>
+              <span class="text-stone-400 block">Apellido</span>
+              <strong class="font-serifKR text-stone-800 text-xs">${opt.surname.hangul} (${opt.surname.hanja})</strong>
+              <p class="text-stone-500 truncate">${opt.surname.meaning.split(' ')[0]}</p>
+            </div>
+            <div>
+              <span class="text-stone-400 block">1ª Sílaba</span>
+              <strong class="font-serifKR text-stone-800 text-xs">${opt.syl1.hangul} (${opt.syl1.hanja})</strong>
+              <p class="text-stone-500 truncate">${opt.syl1.meaning.split(' ')[0]}</p>
+            </div>
+            <div>
+              <span class="text-stone-400 block">2ª Sílaba</span>
+              <strong class="font-serifKR text-stone-800 text-xs">${opt.syl2.hangul} (${opt.syl2.hanja})</strong>
+              <p class="text-stone-500 truncate">${opt.syl2.meaning.split(' ')[0]}</p>
+            </div>
+          </div>
+
+          <p class="text-[11px] font-serifKR italic text-stone-600 leading-snug pt-0.5">
+            "${opt.meaning}"
+          </p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function chooseOption(idx) {
+      selectedCandidateIdx = idx;
+      const cards = document.querySelectorAll(".cand-card");
+      cards.forEach((c, i) => {
+        if (i === idx) {
+          c.classList.remove("border-stone-300");
+          c.classList.add("border-vermilion", "bg-red-50/60", "ring-2", "ring-vermilion/30");
+        } else {
+          c.classList.remove("border-vermilion", "bg-red-50/60", "ring-2", "ring-vermilion/30");
+          c.classList.add("border-stone-300");
+        }
+      });
+
+      document.getElementById("btn-confirm-name").removeAttribute("disabled");
+      showToast(`Seleccionaste: ${generatedOptions[idx].hangul}`, "👌");
+    }
+
+    /* -------------------------------------------------------------
+       EMISIÓN DE LA CREDENCIAL FINAL
+    ------------------------------------------------------------- */
+    function proceedToIdCard() {
+      if (selectedCandidateIdx === null) return;
+      const chosen = generatedOptions[selectedCandidateIdx];
+
+      // Inyección en la ID
+      document.getElementById("card-hangul").innerText = chosen.hangul;
+      document.getElementById("card-roman").innerText = chosen.roman;
+      document.getElementById("card-original-user").innerText = userName;
+      document.getElementById("card-element").innerText = chosen.element;
+      document.getElementById("card-meaning").innerText = `"${chosen.meaning}"`;
+
+      // Inyección del desglose sílaba a sílaba
+      const breakdownEl = document.getElementById("card-syllables-breakdown");
+      breakdownEl.innerHTML = `
+        <div class="bg-stone-50 border border-stone-200 rounded-lg p-1.5">
+          <span class="text-[9px] text-stone-400 block uppercase">Apellido</span>
+          <span class="text-sm font-serifKR font-bold text-stone-900">${chosen.surname.hangul}</span>
+          <span class="text-[10px] font-serifKR text-vermilion font-bold block">${chosen.surname.hanja}</span>
+          <span class="text-[9px] text-stone-600 leading-tight block truncate">${chosen.surname.meaning.split(' ')[0]}</span>
+        </div>
+        <div class="bg-stone-50 border border-stone-200 rounded-lg p-1.5">
+          <span class="text-[9px] text-stone-400 block uppercase">1ª Sílaba</span>
+          <span class="text-sm font-serifKR font-bold text-stone-900">${chosen.syl1.hangul}</span>
+          <span class="text-[10px] font-serifKR text-vermilion font-bold block">${chosen.syl1.hanja}</span>
+          <span class="text-[9px] text-stone-600 leading-tight block truncate">${chosen.syl1.meaning.split(' ')[0]}</span>
+        </div>
+        <div class="bg-stone-50 border border-stone-200 rounded-lg p-1.5">
+          <span class="text-[9px] text-stone-400 block uppercase">2ª Sílaba</span>
+          <span class="text-sm font-serifKR font-bold text-stone-900">${chosen.syl2.hangul}</span>
+          <span class="text-[10px] font-serifKR text-vermilion font-bold block">${chosen.syl2.hanja}</span>
+          <span class="text-[9px] text-stone-600 leading-tight block truncate">${chosen.syl2.meaning.split(' ')[0]}</span>
+        </div>
+      `;
+
+      const randomFolio = Math.floor(100 + Math.random() * 900);
+      document.getElementById("card-folio").innerText = `FOLIO: KO-2026-${randomFolio}`;
+
+      document.getElementById("step-selection").classList.add("hidden");
+      document.getElementById("step-result").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* -------------------------------------------------------------
+       DESCARGA DIRECTA DE LA CREDENCIAL
+    ------------------------------------------------------------- */
+    function downloadTraditionalCard() {
+      const card = document.getElementById("traditional-id-card");
+      const btn = document.getElementById("btn-download");
+      const originalText = btn.innerHTML;
+
+      btn.innerHTML = `<span>⏳ Generando credencial en HD...</span>`;
+      btn.classList.add("opacity-70", "pointer-events-none");
+
+      html2canvas(card, {
+        scale: 3, // Calidad 3x optimizada para Stories
+        backgroundColor: null,
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = `Nombre-Coreano-${document.getElementById("card-hangul").innerText}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+
+        btn.innerHTML = originalText;
+        btn.classList.remove("opacity-70", "pointer-events-none");
+        showToast("¡Credencial guardada! Lista para Stories 📸", "🎉");
+      }).catch(err => {
+        console.error(err);
+        btn.innerHTML = originalText;
+        btn.classList.remove("opacity-70", "pointer-events-none");
+        showToast("Toma una captura de pantalla directa a la credencial", "📷");
+      });
+    }
+
+    function restartExperience() {
+      currentQuestionIdx = 0;
+      userAnswers = [[], [], [], [], []];
+      selectedCandidateIdx = null;
+      document.getElementById("input-user-name").value = "";
+
+      document.getElementById("step-result").classList.add("hidden");
+      document.getElementById("step-selection").classList.add("hidden");
+      document.getElementById("step-quiz").classList.add("hidden");
+      document.getElementById("step-welcome").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
